@@ -1,0 +1,5 @@
+
+- include_tasks: generateAppHost.yaml
+  loop_control:
+    loop_var: hostApp
+  with_items: '{{ vars["cfg_" + env].apps }}'

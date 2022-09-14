@@ -1,0 +1,51 @@
+quickfixJar:
+  version: 2.3.0
+
+deployment:
+  user: ec2-user
+
+hosts:
+  server-1:
+    host: 10.0.0.1
+    user: ec2-user
+    executor: true
+
+  client-1:
+    host: 10.0.0.2
+    user: ec2-user
+    banzai: true
+
+apps:
+  server-1:
+    executor:
+      validOrderTypes: 1,2,F
+      defaultMarketPrice: 12
+      sessions:
+        - senderCompId: EXEC
+          targetCompId: BANZAI
+          fixVersion: FIX.4.2
+          port: 9878
+
+        - senderCompId: EXEC
+          targetCompId: BANZAI2
+          defaultMarketPrice: 12
+          fixVersion: FIX.4.4
+          port: 9880
+
+  client-1:
+    banzai_1:
+      sessions:
+        - senderCompId: BANZAI
+          targetCompId: EXEC
+          fixVersion: FIX.4.2
+          host: server-1
+          port: 9878
+
+    banzai_2:
+      sessions:
+        - senderCompId: BANZAI2
+          targetCompId: EXEC
+          fixVersion: FIX.4.4
+          host: server-1
+          port: 9880
+

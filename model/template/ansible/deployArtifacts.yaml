@@ -1,0 +1,22 @@
+- name: Deploy artifacts in {{ env }}
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Delete old generated folder if it is an SNAPSHOT deployment to have a full refresh
+      file:
+        path: "{{ '{{' }} artifactsPath {{ '}}' }}"
+        state: absent
+      when: artifactsPath.endswith('SNAPSHOT')
+
+    - name: Create deployment folder
+      file:
+        path: "{{ '{{' }} artifactsPath {{ '}}' }}"
+        state: directory
+
+    - name: copy artifacts
+      synchronize:
+        src: "../generatedCode/{{ env }}/"
+        dest: "{{ '{{' }} artifactsPath {{ '}}' }}/"
+        perms: yes
+        use_ssh_args: true

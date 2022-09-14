@@ -1,0 +1,6 @@
+deployment:
+  path: /tmp/quickfix
+  artifacts: /tmp/quickfix-deployment
+
+jvm:
+  args: "-Xms2G"

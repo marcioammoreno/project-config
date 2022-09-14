@@ -1,0 +1,15 @@
+
+- name: Only allow prod master builds for prod
+  fail: msg="Beta builds are not allowed in Prod"
+  when: 'env == "prod" and vars["cfg_" + env].quickfixJar.version.find("-beta") > 0'
+
+- name: Create bin folder
+  file:
+    path: "{{ baseDir + generatedCode + env }}/bin/"
+    state: directory
+
+- name: Get QuickfixJ release
+  ansible.builtin.unarchive:
+    src: 'https://github.com/quickfix-j/quickfixj/releases/download/QFJ_RELEASE_{{ vars["cfg_" + env].quickfixJar.version | replace(".", "_") }}/org.quickfixj-{{ vars["cfg_" + env].quickfixJar.version }}-bin.zip'
+    dest: "{{ baseDir + generatedCode + env }}/bin/"
+    remote_src: yes

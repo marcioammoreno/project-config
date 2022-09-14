@@ -1,0 +1,6 @@
+
+- name: Copy generic reference files
+  copy:
+    src: "{{ baseDir + referenceFolder }}"
+    dest: "{{ baseDir + generatedCode + env }}"
+    mode: preserve

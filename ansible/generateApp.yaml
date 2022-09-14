@@ -1,0 +1,20 @@
+- name: Create app {{app}} in host {{hostApp}} for env {{env}}
+  file:
+    path: "{{ baseDir + generatedCode + env }}/instances/{{hostApp}}/apps/{{app}}"
+    state: directory
+
+- include_vars: '{{ baseDir + appsFolder + app.split("_")[0] }}/spec.yaml'
+
+- template:
+    src: "{{ item.src }}"
+    dest: "{{ baseDir + generatedCode + env }}/instances/{{hostApp}}/apps/{{app}}/{{ item.dest }}"
+    mode: "{{ item.mode }}"
+  vars:
+    appConfig: '{{ vars["cfg_" + env].apps[hostApp][app] }}'
+    appsConfig: '{{ vars["cfg_" + env].apps[hostApp] }}'
+    hostConfig: '{{ vars["cfg_" + env].hosts[hostApp] }}'
+    hostsConfig: '{{ vars["cfg_" + env].hosts }}'
+    config: '{{ vars["cfg_" + env] }}'
+  loop:
+    - { src: '{{ baseDir + appsFolder }}template/run.sh', dest: 'run.sh', mode: 'u+x' }
+    - { src: '{{ baseDir + appsFolder + app.split("_")[0] }}/{{ app.split("_")[0] }}.cfg', dest: '{{ app }}.cfg', mode: '' }

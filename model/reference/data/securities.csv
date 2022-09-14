@@ -1,0 +1,49 @@
+securityId,symbol,name,lotSize,primaryMarket
+1,A,Agilent Technologies Inc.,100,XNYS
+2,AA,Alcoa Corporation,100,XNYS
+3,AAA,AAF First Priority CLO Bond ETF,100,ARCX
+4,AAAU,Goldman Sachs Physical Gold ETF Shares,100,BATS
+5,AACG,ATA Creativity Global American Depositary Shares,100,XNAS
+6,AACI,Armada Acquisition Corp. I Common Stock,100,XNAS
+7,AAC=,Ares Acquisition Corporation Units? each consisting of one Class,100,XNYS
+8,AAC+,Ares Acquisition Corporation Redeemable Warrants? each whole war,100,XNYS
+9,AAIC-B,Arlington Asset Investment Corp. 7.00% Series B Cumulative Perpe,100,XNYS
+10,AAIC-C,Arlington Asset Investment Corp. 8.250% Series C Fixed-to-Floati,100,XNYS
+11,AAMC,Altisource Asset Mgmt Corp,100,XASE
+12,AAPL,Apple Inc. Common Stock,100,XNAS
+13,AAQC=,Accelerate Acquisition Corp. Units? each consisting of one Class,100,XNYS
+14,AAQC+,Accelerate Acquisition Corp. Warrants? each whole warrant exerci,100,XNYS
+15,AAU,Almaden Minerals Ltd.,100,XASE
+16,ABEQ,Absolute Select Value ETF,100,ARCX
+17,ACIO,Aptus Collared Income Opportunity ETF,100,BATS
+18,AMC,AMC ENTERTAINMENT HOLDINGS? INC.,100,XNYS
+19,AMD,Advanced Micro Devices? Inc. Common Stock,100,XNAS
+20,AXAC^,AXIOS Sustainable Growth Acquisition Corporation Rights to recei,100,XNYS
+21,BAC,Bank of America Corporation,100,XNYS
+22,BAC-L,Bank Of America Corporation 7.25% Non-Cumulative Perpetual Conve,10,XNYS
+23,BAC-L,Bank Of America Corporation 7.25% Non-Cumulative Perpetual Conve,10,XNYS
+24,BH,Biglari Holdings Inc. Class B Common Stock,10,XNYS
+25,BRK.A,Berkshire Hathaway Inc.,1,XNYS
+26,BRK.B,BERKSHIRE HATHAWAY Class B,100,XNYS
+27,CBOE,Cboe Global Markets? Inc.,100,BATS
+28,CEI,Camber Energy? Inc,100,XASE
+29,CELG^,Bristol-Myers Squibb Company Contingent Value Rights,100,XNYS
+30,CEQP-,Crestwood Equity Partners LP Preferred Units representing limite,100,XNYS
+31,DTLA-,BROOKFIELD DTLA FUND OFFICE TRUST INVESTOR INC.,100,XNYS
+32,F,Ford Motor Company,100,XNYS
+33,GE,General Electric Company,100,XNYS
+34,GSAT,Globalstar? Inc.,100,XASE
+35,IBM,International Business Machines Corporation,100,XNYS
+36,MIMO+A,Airspan Networks Holdings Inc. Warrants? each whole warrant exer,100,XASE
+37,MIMO+B,Airspan Networks Holdings Inc. Warrants? each whole warrant exer,100,XASE
+38,MSFT,Microsoft Corporation Common Stock,100,XNAS
+39,NOK,Nokia Corporation,100,XNYS
+40,ORCL,Oracle Corp,100,XNYS
+41,QQQ,Invesco QQQ Trust? Series 1,100,XNAS
+42,SEB,Seaboard Corporation,1,XASE
+43,SIRI,Sirius XM Holdings Inc. Common Stock,100,XNAS
+44,SPY,SPDR S&P 500 ETF Trust,100,ARCX
+45,TSLA,Tesla? Inc. Common Stock,100,XNAS
+46,WFC,Wells Fargo & Co.,100,XNYS
+47,XLF,Financial Select Sector SPDR Fund,100,ARCX
+48,ZVZZT,Test Issue,100,XNAS

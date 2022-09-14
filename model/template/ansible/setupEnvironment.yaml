@@ -1,0 +1,65 @@
+- name: Setup artifacts in each host
+  hosts: all
+  gather_facts: false
+  vars:
+    jarVersion: {{ config.quickfixJar.version}}
+{% raw %}
+  tasks:
+    - name: Create deployment folder in case it does not exist
+      file:
+        path: "{{ deployPath }}"
+        state: directory
+
+    - name: Create log folder in case it does not exist
+      file:
+        path: "{{ deployPath }}/logs"
+        state: directory
+
+    - name: Create symbolic link for apps
+      file:
+        src: "{{ artifactsPath }}/instances/{{ inventory_hostname }}/apps"
+        dest: "{{ deployPath }}/apps"
+        state: link
+
+    - name: Create bin folder in case it does not exist
+      file:
+        path: "{{ deployPath }}/bin"
+        state: directory
+
+    - find:
+        paths: "{{ artifactsPath }}/bin/org.quickfixj-{{ jarVersion }}/"
+        patterns: "*.jar"
+      register: jarFiles
+
+    - name: Create symbolic link for lib
+      file:
+        src: "{{ item.path }}"
+        dest: "{{ deployPath }}/bin/{{ item.path | basename }}"
+        state: link
+      with_items: "{{ jarFiles.files }}"
+
+    - name: Create symbolic link for lib
+      file:
+        src: "{{ artifactsPath }}/bin/org.quickfixj-{{ jarVersion }}/lib"
+        dest: "{{ deployPath }}/lib"
+        state: link
+
+    - name: Create symbolic link for scripts
+      file:
+        src: "{{ artifactsPath }}/scripts"
+        dest: "{{ deployPath }}/scripts"
+        state: link
+
+    - name: Create symbolic link for configs
+      file:
+        src: "{{ artifactsPath }}/configs"
+        dest: "{{ deployPath }}/configs"
+        state: link
+
+    - name: Create symbolic link for data
+      file:
+        src: "{{ artifactsPath }}/data"
+        dest: "{{ deployPath }}/data"
+        state: link
+
+{% endraw %}

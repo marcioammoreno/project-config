@@ -1,0 +1,11 @@
+
+- name: Create folder for each host
+  file:
+    path: "{{ baseDir + generatedCode + env }}/instances/{{hostApp}}"
+    state: directory
+
+- include_tasks: generateApp.yaml
+  loop_control:
+    loop_var: app
+    index_var: app_index
+  with_items: '{{ vars["cfg_" + env].apps[hostApp] }}'

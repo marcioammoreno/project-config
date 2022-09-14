@@ -1,0 +1,57 @@
+---
+- name: Generate Code to be deployed
+  hosts: localhost
+
+  tasks:
+    - name: get environments definition
+      include_vars:
+        file: "{{ baseDir + environmentFolder }}/environments.yaml"
+        name: envs
+
+    - name: include common definition for all environments
+      include_vars:
+        file: "{{ baseDir + environmentFolder }}/common.yaml"
+        name: "cfg_{{ item }}"
+      with_items: "{{ envs.environments }}"
+
+    - name: include specific environment configs
+      include_vars:
+        file: "{{ baseDir + environmentFolder + envs.environments[item] }}"
+        name: "cfg_{{ item }}"
+        hash_behaviour: merge
+      with_items: "{{ envs.environments }}"
+
+    - name: Delete old generated folder for full refresh
+      file:
+        path: "{{ baseDir + generatedCode }}"
+        state: absent
+
+    - name: Create folder for each environment
+      file:
+        path: "{{ baseDir + generatedCode }}/{{ item }}"
+        state: directory
+      with_items: "{{ envs.environments }}"
+
+    - name: Download Binaries
+      include_tasks: downloadBinary.yaml
+      loop_control:
+        loop_var: env
+      with_items: "{{ envs.environments }}"
+
+    - name: Generate Apps
+      include_tasks: generateApps.yaml
+      loop_control:
+        loop_var: env
+      with_items: "{{ envs.environments }}"
+
+    - name: Generate templates
+      include_tasks: generateTemplate.yaml
+      loop_control:
+        loop_var: env
+      with_items: "{{ envs.environments }}"
+
+    - name: Copy over references
+      include_tasks: copyReferences.yaml
+      loop_control:
+        loop_var: env
+      with_items: "{{ envs.environments }}"

@@ -1,0 +1,13 @@
+
+- find:
+    paths: "{{ baseDir + templateFolder }}/"
+    recurse: yes
+  register: templateFiles
+
+- template:
+    src: "{{ item.path }}"
+    dest: '"{{ baseDir + generatedCode + env }}/{{ item.path | dirname | replace (baseDir + templateFolder,"") }}/"'
+    mode: "{{ item.mode }}"
+  vars:
+    config: '{{ vars["cfg_" + env] }}'
+  with_items: "{{ templateFiles.files }}"
